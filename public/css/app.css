@@ -13942,3 +13942,11 @@ a.text-dark:focus {
   clip: auto;
 }
 
+body {
+  background-color: #d3dded;
+}
+
+div.container {
+  background-color: white;
+}
+

@@ -2,3 +2,10 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+
+body {
+    background-color: #d3dded;
+}
+div.container {
+    background-color: white;
+}
