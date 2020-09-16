@@ -9,3 +9,11 @@ body {
 div.container {
     background-color: white;
 }
+
+.fade:not(.show) {
+    opacity: 0.95;
+}
+
+.modal {
+    padding-top: 5%;
+}

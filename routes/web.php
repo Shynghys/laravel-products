@@ -22,3 +22,4 @@ Route::resource('invoices', 'InvoicesController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::POST('deletePost', 'InvoicesController@deletePost');

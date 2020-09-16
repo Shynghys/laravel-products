@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\User;
 
 class ExampleTest extends TestCase
 {
@@ -15,12 +16,7 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     $this->rules     = (new UserStoreRequest())->rules();
-    //     $this->validator = $this->app['validator'];
-    // }
+
     protected function validateField($field, $value)
     {
         return $this->getFieldValidator($field, $value)->passes();
@@ -49,7 +45,8 @@ class ExampleTest extends TestCase
     }
     public function testCreateInvoice()
     {
-        $response = $this->get('/invoices/create');
+        $user = User::find(1);
+        $response = $this->user->login()->get('/invoices/create');
 
         $response->assertStatus(200);
     }
@@ -61,5 +58,17 @@ class ExampleTest extends TestCase
         $response = $this->actingAs($user)
             ->withSession(['foo' => 'bar'])
             ->get('/');
+    }
+    public function testBasicExample()
+    {
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', '/user', ['name' => 'Sally']);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'created' => true,
+            ]);
     }
 }

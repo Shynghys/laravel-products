@@ -77,3 +77,54 @@
     </div>
 </body>
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+  // Show function
+  $(document).on('click', '.show-modal', function() {
+    
+ 
+  $('#show').modal('show');
+  $('#number').text($(this).data('invoice_number'));
+  $('#date').text($(this).data('created_at'));
+  $('#comment').text($(this).data('comment'));
+  $('.modal-title').text('Show Invoice');
+  });
+
+// form Delete function
+$(document).on('click', '.delete-modal', function() {
+$('#footer_action_button').text(" Delete");
+$('#footer_action_button').removeClass('glyphicon-check');
+$('#footer_action_button').addClass('glyphicon-trash');
+$('.actionBtn').removeClass('btn-success');
+$('.actionBtn').addClass('btn-danger');
+$('.actionBtn').addClass('delete');
+$('.modal-title').text('Delete Post');
+$('.id').text($(this).data('id'));
+$('.deleteContent').show();
+$('.form-horizontal').hide();
+$('.invoice_number').html($(this).data('invoice_number'));
+$('#myModal').modal('show');
+});
+
+$('.modal-footer').on('click', '.delete', function(){
+
+  $.ajax({
+    type: 'POST',
+    url: 'deletePost',
+    data: {
+      '_token': $('input[name=_token]').val(),
+      'id': $('.id').text(),
+      'invoice_number': $('.invoice_number').text()
+    },
+    
+    success: function(data){
+       $('.invoices/' + $('.id').text()).remove();
+    }
+  });
+});
+</script>
+  </body>
+</html>

@@ -19399,20 +19399,16 @@ var render = function() {
     "div",
     [
       _vm.isInfoPopupVisible
-        ? _c(
-            "v-popup",
-            {
-              attrs: {
-                rightBtnTitle: "Add to cart",
-                popupTitle: _vm.product_data.name
-              },
-              on: {
-                closePopup: _vm.closeInfoPopup,
-                rightBtnAction: _vm.addToCart
-              }
+        ? _c("v-popup", {
+            attrs: {
+              rightBtnTitle: "Add to cart",
+              popupTitle: _vm.product_data.name
             },
-            [_c("p", [_vm._v("adadasd")])]
-          )
+            on: {
+              closePopup: _vm.closeInfoPopup,
+              rightBtnAction: _vm.addToCart
+            }
+          })
         : _vm._e(),
       _vm._v(" "),
       _c(

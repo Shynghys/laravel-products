@@ -3,7 +3,9 @@
 @section('title','adsdad')
 
 @section('content')
-@hasrole('moderator','super-admin')
+@can('edit articles')
+
+<div class="container" style="border-radius:5px;">
 <div class="row">
 <div class="col-lg-6 mx-auto">
     @if ($errors->any())
@@ -67,7 +69,8 @@
     </form>
 </div>
 </div>
+</div>
 @else
     <div>You don't have permission</div>
-@endhasrole
+@endcan
 @endsection

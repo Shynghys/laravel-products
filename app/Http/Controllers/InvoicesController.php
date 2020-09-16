@@ -88,4 +88,9 @@ class InvoicesController extends Controller
 
         return redirect('/invoices')->with('success', 'Invoice deleted');
     }
+    public function deletePost(request $request)
+    {
+        $invoice = Invoice::find($request->id)->delete();
+        return response()->json();
+    }
 }
