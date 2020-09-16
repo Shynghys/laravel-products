@@ -25,10 +25,10 @@
       <div class="h3 ml-3 mt-3">Invoices</div>
         <thead>    
           <tr>
-            <th scope="col" class="th-sm">Create</th>
-            <th scope="col" class="th-sm">Number</th>
-            <th scope="col" class="th-sm">Supply</th>
-            <th scope="col" class="th-sm">Comment</th>
+            <th scope="col" class="th-sm">Created</th>
+            <th scope="col" class="th-sm"> {{ __('msg.number') }}</th>
+            <th scope="col" class="th-sm"> {{ __('msg.supply_date') }}</th>
+            <th scope="col" class="th-sm"> {{ __('msg.comment') }}</th>
             <th></th>
           </tr>
         </thead>

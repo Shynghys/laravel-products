@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,22 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+
+
     return view('welcome');
 });
+// Route::get('/{locale}', function ($locale) {
+//     if (!in_array($locale, ['en', 'ru'])) {
+//         App::setLocale('en');
+//     }
+
+//     App::setLocale($locale);
+
+//     return view('welcome');
+// });
 Route::resource('invoices', 'InvoicesController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::POST('deletePost', 'InvoicesController@deletePost');
+// Route::POST('deletePost', 'InvoicesController@deletePost');
