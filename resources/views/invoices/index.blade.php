@@ -34,34 +34,34 @@
         </thead>
         <tbody>
      
-         @foreach($invoice as $invoices)
+         @foreach($invoice as $invoices ?? '')
           <tr>
               
-            <td>{{ $invoices->created_at->toDateString() }}</td>
-            <td>{{ $invoices->invoice_number }}</th>
-            <td>{{ $invoices->supply_date }}</td>
-            <td>{{ $invoices->comment }}</td>
+            <td>{{ $invoices ?? ''->created_at->toDateString() }}</td>
+            <td>{{ $invoices ?? ''->invoice_number }}</th>
+            <td>{{ $invoices ?? ''->supply_date }}</td>
+            <td>{{ $invoices ?? ''->comment }}</td>
             <td class="table-buttons">
               @can('see articles')
-              {{-- <popup-component invoice-id={{$invoices->id}}></popup-component> --}}
+              {{-- <popup-component invoice-id={{$invoices ?? ''->id}}></popup-component> --}}
 
-              <a href="#" class="show-modal btn btn-info" data-invoice_number="{{$invoices->invoice_number}}" data-created_at="{{$invoices->created_at}}" data-comment="{{$invoices->comment}}">
+              <a href="#" class="show-modal btn btn-info" data-invoice_number="{{$invoices ?? ''->invoice_number}}" data-created_at="{{$invoices ?? ''->created_at}}" data-comment="{{$invoices ?? ''->comment}}">
                 <i class="fa fa-eye"></i>
               </a>
               @can('delete articles')
             
               
-              <a href="#" class="delete-modal btn btn-danger" data-id="{{$invoices->id}}" data-invoice_number="{{$invoices->invoice_number}}">
+              <a href="#" class="delete-modal btn btn-danger" data-id="{{$invoices ?? ''->id}}" data-invoice_number="{{$invoices ?? ''->invoice_number}}">
                 <i class="fa fa-trash"></i>
               </a>
               @endcan
-              <a href="{{ route('invoices.show', $invoices) }}" class="btn btn-success">
+              <a href="{{ route('invoices.show', $invoices ?? '') }}" class="btn btn-success">
                 <i class="fa fa-eye"></i>
               </a>
               @endcan
            
               @can('edit articles')
-              <a href="{{ route('invoices.edit', $invoices) }}" class="btn btn-primary">
+              <a href="{{ route('invoices.edit', $invoices ?? '') }}" class="btn btn-primary">
                 <i class="fa fa-pencil" ></i>
               </a>
               @endcan
@@ -119,7 +119,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <form method="POST" action="{{ route('invoices.destroy', $invoices) }}">
+        <form method="POST" action="{{ route('invoices.destroy', $invoices ?? '') }}">
           @csrf
           @method('DELETE')
              <button type="submit" class="btn btn-danger">
