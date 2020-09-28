@@ -26,13 +26,17 @@ class InvoicesController extends Controller
     {
         $request->validate([
             'invoice_number' => 'required',
-            'invoice_date' => 'required',
-            'supply_date' => 'required',
+            'name' => 'required',
+            'category' => 'required',
+            'invoice_date' => 'nullable',
+            'supply_date' => 'nullable',
             'comment' => '',
 
         ]);
         $invoice = new Invoice([
             'invoice_number' => $request->get('invoice_number'),
+            'name' => $request->get('name'),
+            'category' => $request->get('category'),
             'invoice_date' => $request->get('invoice_date'),
             'supply_date' => $request->get('supply_date'),
             'comment' => $request->get('comment'),
@@ -60,13 +64,17 @@ class InvoicesController extends Controller
     {
         $request->validate([
             'invoice_number' => 'required',
-            'invoice_date' => 'required',
-            'supply_date' => 'required',
+            'name' => 'required',
+            'category' => 'required',
+            'invoice_date' => 'nullable',
+            'supply_date' => 'nullable',
             'comment' => '',
         ]);
 
         $invoice = Invoice::find($id);
         $invoice->invoice_number = $request->get('invoice_number');
+        $invoice->name = $request->get('name');
+        $invoice->category = $request->get('category');
         $invoice->invoice_date = $request->get('invoice_date');
         $invoice->supply_date = $request->get('supply_date');
         $invoice->comment = $request->get('comment');

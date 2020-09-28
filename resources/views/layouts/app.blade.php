@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -28,43 +30,43 @@
                 </a>
 
 
-                
+
                 {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button> --}}
 
-                <div id="navbarSupportedContent" >
-                  
+                <div id="navbarSupportedContent">
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                     
-                                <p id="navbarDropdown" class="nav pt-1"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} 
-                                   
-                                </p>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
-                                 {{ __('Logout') }}
-                             </a>
 
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                 @csrf
-                             </form>
-                               
-                            
+                        <p id="navbarDropdown" class="nav pt-1" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+
+                        </p>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+
                         @endguest
                     </ul>
                 </div>
@@ -76,22 +78,28 @@
         </main>
     </div>
 </body>
+
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function() {
+    $('#example').DataTable();
+    } );
+    // Show function
+$(document).on('click', '.show-modal', function() {
 
-  // Show function
-  $(document).on('click', '.show-modal', function() {
-    
- 
-  $('#show').modal('show');
-  $('#number').text($(this).data('invoice_number'));
-  $('#date').text($(this).data('created_at'));
-  $('#comment').text($(this).data('comment'));
-  $('.modal-title').text('Show Invoice');
-  });
+
+$('#show').modal('show');
+$('#number').text($(this).data('invoice_number'));
+// $('#name').text($(this).data('name'));
+$('#date').text($(this).data('created_at'));
+$('#comment').text($(this).data('comment'));
+$('.modal-title').text('Show Invoice');
+});
 
 // form Delete function
 $(document).on('click', '.delete-modal', function() {
@@ -111,20 +119,21 @@ $('#myModal').modal('show');
 
 $('.modal-footer').on('click', '.delete', function(){
 
-  $.ajax({
-    type: 'POST',
-    url: 'deletePost',
-    data: {
-      '_token': $('input[name=_token]').val(),
-      'id': $('.id').text(),
-      'invoice_number': $('.invoice_number').text()
-    },
-    
-    success: function(data){
-       $('.invoices/' + $('.id').text()).remove();
-    }
-  });
+$.ajax({
+type: 'POST',
+url: 'deletePost',
+data: {
+'_token': $('input[name=_token]').val(),
+'id': $('.id').text(),
+'invoice_number': $('.invoice_number').text()
+},
+
+success: function(data){
+$('.invoices/' + $('.id').text()).remove();
+}
+});
 });
 </script>
-  </body>
+</body>
+
 </html>

@@ -18,8 +18,8 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_number');
             $table->string('name');
             $table->string('category');
-            $table->date('invoice_date');
-            $table->date('supply_date');
+            $table->date('invoice_date')->nullable();
+            $table->date('supply_date')->nullable();
             $table->string('comment')->nullable();
 
             $table->timestamps();
