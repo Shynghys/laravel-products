@@ -14,7 +14,7 @@
 
 `npm run development`
 
-#### Мигрируем в базу данных
+#### Мигрируем в базу данных с сидами
 
 `php artisan migrate --seed`
 
@@ -30,22 +30,26 @@
 
 Он разделяется:
 
-1. Получает все продукты.
+1. Показывает все продукты.
 
-    \*`Route::get(/invoices, $callback);`
+    \*`Route::get(/invoices, 'InvoicesController@index');`
 
-2. Создает продукт.
+2. Переходит на форму для создания продукта.
 
-    \*`Route::delete(/invoices/create, \$callback);`
+    \*`Route::post(/invoices/create, 'InvoicesController@create');`
 
-3. Получает продукт.
+3. Создает продукт.
 
-    \*`Route::post(/invoice/{$id},, $callback);`
+    \*`Route::post(/invoices/create, 'InvoicesController@store');`
 
-4. Редактирует продукт.
+4. Показывает продукт.
 
-    \*`Route::put(/invoices/{$id}/edit,, $callback);`
+    \*`Route::post(/invoice/{$id},, 'InvoicesController@show');`
 
-5. Удаляет продукт.
+5. Редактирует продукт.
 
-    \*`Route::delete(/invoices/{$id}/delete, \$callback);`
+    \*`Route::put(/invoices/{$id}/edit,, 'InvoicesController@edit');`
+
+6. Удаляет продукт.
+
+    \*`Route::delete(/invoices/{$id}/delete, 'InvoicesController@delete');`
