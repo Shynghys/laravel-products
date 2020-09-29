@@ -125,38 +125,40 @@
     $('.modal-title').text('Show Invoice');
     });
 
-    // form Delete function
-    $(document).on('click', '.delete-modal', function() {
-    $('#footer_action_button').text(" Delete");
-    $('#footer_action_button').removeClass('glyphicon-check');
-    $('#footer_action_button').addClass('glyphicon-trash');
-    $('.actionBtn').removeClass('btn-success');
-    $('.actionBtn').addClass('btn-danger');
-    $('.actionBtn').addClass('delete');
-    $('.modal-title').text('Delete Post');
-    $('.id').text($(this).data('id'));
-    $('.deleteContent').show();
-    $('.form-horizontal').hide();
-    $('.invoice_number').html($(this).data('invoice_number'));
-    $('#myModal').modal('show');
-    });
 
-    $('.modal-footer').on('click', '.delete', function(){
+ 
+// form Delete function
+$(document).on('click', '.delete-modal', function() {
+$('#footer_action_button').text(" Delete");
+$('#footer_action_button').removeClass('glyphicon-check');
+$('#footer_action_button').addClass('glyphicon-trash');
+$('.actionBtn').removeClass('btn-success');
+$('.actionBtn').addClass('btn-danger');
+$('.actionBtn').addClass('delete');
+$('.modal-title').text('Delete Post');
+$('.id').text($(this).data('id'));
+$('.deleteContent').show();
+$('.form-horizontal').hide();
+$('.invoice_number').html($(this).data('invoice_number'));
+$('#myModal').modal('show');
+});
 
-    $.ajax({
+$('.modal-footer').on('click', '.delete', function(){
+
+  $.ajax({
     type: 'POST',
     url: 'deletePost',
     data: {
-    '_token': $('input[name=_token]').val(),
-    'id': $('.id').text(),
-    'invoice_number': $('.invoice_number').text()
+      '_token': $('input[name=_token]').val(),
+      'id': $('.id').text(),
+      'invoice_number': $('.invoice_number').text()
     },
-
+    
     success: function(data){
-    $('.invoices/' + $('.id').text()).remove();
+       $('.invoices/' + $('.id').text()).remove();
     }
-    });
-    });
+  });
+});
 </script>
 </body>
 

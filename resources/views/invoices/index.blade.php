@@ -45,9 +45,10 @@
       <thead>
         <tr>
           <th scope="col" class="th-sm">Created</th>
+          <th scope="col" class="th-sm"> {{ __('msg.number') }}</th>
           <th scope="col" class="th-sm">Name</th>
           <th scope="col" class="th-sm">Category</th>
-          {{-- <th scope="col" class="th-sm"> {{ __('msg.number') }}</th> --}}
+
           {{-- <th scope="col" class="th-sm"> {{ __('msg.supply_date') }}</th> --}}
           {{-- <th scope="col" class="th-sm"> {{ __('msg.comment') }}</th> --}}
           <th></th>
@@ -59,37 +60,51 @@
         <tr>
 
           <td>{{ $invoices->created_at->toDateString() }}</td>
-          {{-- <td>{{ $invoices ?? ''->invoice_number }}</td> --}}
+          <td>{{ $invoices->invoice_number }}</td>
           <td>{{ $invoices->name }}</td>
           <td>{{ $invoices->category }}</td>
           {{-- <td>{{ $invoices ?? ''->supply_date }}</td> --}}
           {{-- <td>{{ $invoices ?? ''->comment }}</td> --}}
-          <td class="table-buttons">
-            @can('see articles')
-            {{-- <popup-component invoice-id={{$invoices ?? ''->id}}></popup-component> --}}
+          <td class="table-buttons d-flex">
 
-            {{-- <a href="#" class="show-modal btn btn-info" data-name="{{$invoices ?? ''->name[0]}}"
-            data-invoice_number="{{$invoices ?? ''->invoice_number}}" data-created_at="{{$invoices ?? ''->created_at}}"
-            data-comment="{{$invoices ?? ''->comment}}">
+
+            {{-- @can('see articles')
+            <a href="#" class="show-modal btn btn-info" data-name="{{$invoices ?? ''->name[0]}}"
+            data-invoice_number="{{$invoices ?? ''->invoice_number}}"
+            data-created_at="{{$invoices ?? ''->created_at}}" data-comment="{{$invoices ?? ''->comment}}">
             <i class="fa fa-eye"></i>
-            </a> --}}
+            </a>
+            @endcan --}}
+
             @can('delete articles')
 
+            <form method="POST" action="{{ route('invoices.destroy', $invoices ?? '') }}">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">
+                <div><i class="fa fa-trash"></i></div>
+              </button>
+            </form>
 
-            <a href="#" class="delete-modal btn btn-danger" data-id="{{$invoices ?? ''->id}}"
-              data-invoice_number="{{$invoices ?? ''->invoice_number}}">
-              <i class="fa fa-trash"></i>
-            </a>
             @endcan
-            <a href="{{ route('invoices.show', $invoices ?? '') }}" class="btn btn-success">
-              <i class="fa fa-eye"></i>
-            </a>
+
+
+            @can('see articles')
+            <div>
+              <a href="{{ route('invoices.show', $invoices) }}" class="btn btn-success">
+                <i class="fa fa-eye"></i>
+              </a>
+            </div>
+
             @endcan
 
             @can('edit articles')
-            <a href="{{ route('invoices.edit', $invoices ?? '') }}" class="btn btn-primary">
-              <i class="fa fa-pencil"></i>
-            </a>
+            <div>
+              <a href="{{ route('invoices.edit', $invoices) }}" class="btn btn-primary">
+                <i class="fa fa-pencil"></i>
+              </a>
+            </div>
+
             @endcan
 
           </td>

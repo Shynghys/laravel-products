@@ -31736,8 +31736,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/shynghys/study/laravel-froot/froot-invoices/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/shynghys/study/laravel-froot/froot-invoices/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/shynghys/study/fullstack-projects/laravel-projects/laravel-marlin/products/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/shynghys/study/fullstack-projects/laravel-projects/laravel-marlin/products/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

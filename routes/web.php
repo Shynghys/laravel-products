@@ -19,6 +19,15 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+Route::resource('invoices', 'InvoicesController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::POST('deletePost', 'InvoicesController@deletePost');
+
 // Route::get('/{locale}', function ($locale) {
 //     if (!in_array($locale, ['en', 'ru'])) {
 //         App::setLocale('en');
@@ -28,9 +37,3 @@ Route::get('/', function () {
 
 //     return view('welcome');
 // });
-Route::resource('invoices', 'InvoicesController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-// Route::POST('deletePost', 'InvoicesController@deletePost');
