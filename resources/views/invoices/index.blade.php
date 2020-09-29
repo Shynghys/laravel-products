@@ -19,7 +19,28 @@
 
 
   <div style="overflow-x:auto;">
+    <table class="col-2 pl-0">
+      <tbody>
+        <tr>
+          <td>
+            {{-- <input id="category" class="form-control" name="category"> --}}
+            <select id="category" class="form-control" name="category">
+              <option name="all" selected>All</option>
+              <option name="fruits">Fruits</option>
+              <option name="vegetables">Vegetables</option>
+              <option name="meat">Meat</option>
+
+            </select>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    {{-- <input type="text" id="max" name="max"> --}}
     <table id="example" width="100%" class="table table-striped mt-3 mr-ml-3 ">
+
+
       {{-- <div class="h3 ml-3 mt-3">Invoices</div> --}}
       <thead>
         <tr>

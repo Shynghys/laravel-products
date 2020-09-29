@@ -1,32 +1,51 @@
-Инструкция по запуску проекта
+# Инструкция по запуску проекта
 
-Скачиваем репозиторий
-git clone https://github.com/Shynghys/laravel-products
+#### Скачиваем репозиторий
 
-Устанавливаем пакеты для composer и node
-composer install
-npm install
+`git clone https://github.com/Shynghys/laravel-products`
 
-Закомпилируем фронтенд
-npm run development
+#### Устанавливаем пакеты для composer и node
 
-Мигрируем в базу данных
-php artisan migrate
+`composer install`
 
-Добавить в базу данных seeder для ролей
-php artisan db:seed --class=PermissionsSeeder
+`npm install`
 
-Запускаем на сервере
-php artisan serve
+#### Закомпилируем фронтенд
 
-Документирование АПИ
-Route::resource('invoices', 'InvoicesController');
+`npm run development`
+
+#### Мигрируем в базу данных
+
+`php artisan migrate --seed`
+
+#### Запускаем на сервере
+
+`php artisan serve`
+
+---
+
+## Документирование АПИ
+
+`Route::resource('invoices', 'InvoicesController')`
+
 Он разделяется:
-Получает все продукты
-Route::get(/invoices, $callback);
-Получает продукт
-Route::post(/invoice/{$id},, $callback);
-Редактирует продукт
-Route::put(/invoices/{$id},, $callback);
-Удаляет продукт
-Route::delete(/invoices/{$id}, \$callback);
+
+1. Получает все продукты.
+
+    \*`Route::get(/invoices, $callback);`
+
+2. Создает продукт.
+
+    \*`Route::delete(/invoices/create, \$callback);`
+
+3. Получает продукт.
+
+    \*`Route::post(/invoice/{$id},, $callback);`
+
+4. Редактирует продукт.
+
+    \*`Route::put(/invoices/{$id}/edit,, $callback);`
+
+5. Удаляет продукт.
+
+    \*`Route::delete(/invoices/{$id}/delete, \$callback);`

@@ -86,53 +86,77 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+    /* Custom filtering function which will search data in column four between two values */
+    $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var sort_category = $('#category').val().toLowerCase()   
+        var category =  data[2].toLowerCase(); // use data for the age column
+ 
+        if ( sort_category==category )
+        {
+            return true;
+        }  else if (sort_category=='all'){
+            
+            return true;
+        }
+        
+        return false;
+    }
+    );
     $(document).ready(function() {
-    $('#example').DataTable();
+    var table = $('#example').DataTable();
+     
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#category').click( function() {
+       
+        table.draw();
     } );
+    } );
+
     // Show function
-$(document).on('click', '.show-modal', function() {
+    $(document).on('click', '.show-modal', function() {
 
 
-$('#show').modal('show');
-$('#number').text($(this).data('invoice_number'));
-// $('#name').text($(this).data('name'));
-$('#date').text($(this).data('created_at'));
-$('#comment').text($(this).data('comment'));
-$('.modal-title').text('Show Invoice');
-});
+    $('#show').modal('show');
+    $('#number').text($(this).data('invoice_number'));
+    // $('#name').text($(this).data('name'));
+    $('#date').text($(this).data('created_at'));
+    $('#comment').text($(this).data('comment'));
+    $('.modal-title').text('Show Invoice');
+    });
 
-// form Delete function
-$(document).on('click', '.delete-modal', function() {
-$('#footer_action_button').text(" Delete");
-$('#footer_action_button').removeClass('glyphicon-check');
-$('#footer_action_button').addClass('glyphicon-trash');
-$('.actionBtn').removeClass('btn-success');
-$('.actionBtn').addClass('btn-danger');
-$('.actionBtn').addClass('delete');
-$('.modal-title').text('Delete Post');
-$('.id').text($(this).data('id'));
-$('.deleteContent').show();
-$('.form-horizontal').hide();
-$('.invoice_number').html($(this).data('invoice_number'));
-$('#myModal').modal('show');
-});
+    // form Delete function
+    $(document).on('click', '.delete-modal', function() {
+    $('#footer_action_button').text(" Delete");
+    $('#footer_action_button').removeClass('glyphicon-check');
+    $('#footer_action_button').addClass('glyphicon-trash');
+    $('.actionBtn').removeClass('btn-success');
+    $('.actionBtn').addClass('btn-danger');
+    $('.actionBtn').addClass('delete');
+    $('.modal-title').text('Delete Post');
+    $('.id').text($(this).data('id'));
+    $('.deleteContent').show();
+    $('.form-horizontal').hide();
+    $('.invoice_number').html($(this).data('invoice_number'));
+    $('#myModal').modal('show');
+    });
 
-$('.modal-footer').on('click', '.delete', function(){
+    $('.modal-footer').on('click', '.delete', function(){
 
-$.ajax({
-type: 'POST',
-url: 'deletePost',
-data: {
-'_token': $('input[name=_token]').val(),
-'id': $('.id').text(),
-'invoice_number': $('.invoice_number').text()
-},
+    $.ajax({
+    type: 'POST',
+    url: 'deletePost',
+    data: {
+    '_token': $('input[name=_token]').val(),
+    'id': $('.id').text(),
+    'invoice_number': $('.invoice_number').text()
+    },
 
-success: function(data){
-$('.invoices/' + $('.id').text()).remove();
-}
-});
-});
+    success: function(data){
+    $('.invoices/' + $('.id').text()).remove();
+    }
+    });
+    });
 </script>
 </body>
 
