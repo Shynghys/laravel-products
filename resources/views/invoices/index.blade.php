@@ -20,7 +20,7 @@
 
   <div style="overflow-x:auto;">
     <table id="example" width="100%" class="table table-striped mt-3 mr-ml-3 ">
-      <div class="h3 ml-3 mt-3">Invoices</div>
+      {{-- <div class="h3 ml-3 mt-3">Invoices</div> --}}
       <thead>
         <tr>
           <th scope="col" class="th-sm">Created</th>

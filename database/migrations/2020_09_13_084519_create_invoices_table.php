@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->date('invoice_date')->nullable();
             $table->date('supply_date')->nullable();
             $table->string('comment')->nullable();
-
+            
             $table->timestamps();
         });
     }
