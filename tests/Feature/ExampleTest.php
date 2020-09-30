@@ -69,20 +69,21 @@ class ExampleTest extends TestCase
             $user             = factory(\App\User::class)->create();
             $response         = $this->actingAs($user, 'api')->json('GET', '/invoices');
             $response->assertStatus(200);
-            $response->assertJsonStructure(
-                    [
-                            [
-                                    'id',
-                                    'invoice_number',
-                                    'name',
-                                    'comment',
-                                    'invoice_date',
-                                    'supply_date',
-                                    'created_at',
-                                    'updated_at'
-                            ]
-                    ]
-                );
+            print(json_encode($response));
+            // $response->assertJsonFragment(
+            //         [
+            //                 [
+            //                         'id',
+            //                         'invoice_number',
+            //                         'name',
+            //                         'comment',
+            //                         'invoice_date',
+            //                         'supply_date',
+            //                         'created_at',
+            //                         'updated_at'
+            //                 ]
+            //         ]
+            //     );
         }
     public function testGettingAllProducts()
     {     
