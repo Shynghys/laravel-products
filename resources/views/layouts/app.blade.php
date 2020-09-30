@@ -90,7 +90,7 @@
     $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var sort_category = $('#category').val().toLowerCase()   
-        var category =  data[2].toLowerCase(); // use data for the age column
+        var category =  data[3].toLowerCase(); // use data for the age column
  
         if ( sort_category==category )
         {
