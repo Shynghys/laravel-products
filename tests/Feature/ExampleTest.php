@@ -69,7 +69,7 @@ class ExampleTest extends TestCase
             $user             = factory(\App\User::class)->create();
             $response         = $this->actingAs($user, 'api')->json('GET', '/invoices');
             $response->assertStatus(200);
-            print(json_encode($response));
+            print($response->getJson('api/auth/user')->json());
             // $response->assertJsonFragment(
             //         [
             //                 [
