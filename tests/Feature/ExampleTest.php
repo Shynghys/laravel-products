@@ -1,15 +1,7 @@
 <?php
-
-namespace Tests\Feature;
-use App\Invoice;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use  \Illuminate\Database\Eloquent\Factories\Factory\HasFactory;
-use Tests\TestCase;
-use App\User;
-use Laracasts\TestDummy\Factory;
-use Illuminate\Http\Request;
+ use Tests\TestCase;
+ use Illuminate\Foundation\Testing\WithFaker;
+ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ExampleTest extends TestCase
 {
     // use WithoutMiddleware;
@@ -69,9 +61,15 @@ class ExampleTest extends TestCase
             $user             = factory(\App\User::class)->create();
             $response         = $this->actingAs($user, 'api')->json('GET', '/invoices');
             $response->assertStatus(200);
-            print($response->getJson('api/auth/user')->json());
-            // $response->assertJsonFragment(
-            //         [
+            print( response()->json());
+            response()->json([
+                'name' => 'Abigail',
+                'state' => 'CA',
+            ]);
+            // $response->assertJsonStructure(
+            //         ['status',
+            //         'message',
+            //         'data'=>
             //                 [
             //                         'id',
             //                         'invoice_number',
